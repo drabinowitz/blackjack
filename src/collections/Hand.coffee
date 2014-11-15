@@ -3,7 +3,7 @@ class window.Hand extends Backbone.Collection
 
   initialize: (array, @deck, @isDealer) ->
     @on 'add', (e) =>
-      isOver = _(do @scores).every (score) -> score > 21 
+      isOver = _(do @scores).every (score) -> score > 21
       if isOver then @trigger 'over21',@
 
   hit: ->
@@ -29,4 +29,7 @@ class window.Hand extends Backbone.Collection
   stand: ->
     @trigger 'stand', @
 
+  reveal: ->
+    @forEach (card) ->
+      if !card.get('revealed') then do card.flip
 
