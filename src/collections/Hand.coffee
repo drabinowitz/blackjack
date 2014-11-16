@@ -2,13 +2,14 @@ class window.Hand extends Backbone.Collection
   model: Card
 
   initialize: (array, @deck, @isDealer) ->
-    @on 'add', (e) =>
-      isOver = _(do @scores).every (score) -> score > 21
-      if isOver then @trigger 'over21',@
 
   hit: ->
-    temp = @deck.pop()
-    @add(temp)
+    isOver = _(do @scores).every (score) -> score > 21
+    if not isOver
+      temp = @deck.pop()
+      @add(temp)
+    isOver = _(do @scores).every (score) -> score > 21
+    if isOver then @trigger 'over21',@
     temp
 
   hasAce: -> @reduce (memo, card) ->

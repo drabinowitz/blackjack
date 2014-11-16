@@ -20,12 +20,13 @@ class window.Game extends Backbone.Model
     if hand is @get('playerHand') then result = @get('dealerHand')
     # alert who wins
     if hand is @get('dealerHand') then result = @get('playerHand')
-    result
+    @triggerWinner(result)
 
   handleStand: (hand) ->
     if hand is @get('dealerHand')
       result = if do @playerIsWinning then @get('playerHand') else @get('dealerHand')
-      return result
+      return @triggerWinner(result)
+
     else
       do @dealerPlay
 
@@ -44,3 +45,11 @@ class window.Game extends Backbone.Model
     while do @playerIsWinning
       do hand.hit
     do hand.stand
+
+  triggerWinner: (hand) ->
+    @trigger 'winner', hand
+    hand
+
+  newGame: ->
+    do @initialize
+    @trigger('newGame')

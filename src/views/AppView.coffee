@@ -5,6 +5,7 @@ class window.AppView extends Backbone.View
   '
 
   initialize: ->
+    @model.on('newGame', @render, @)
     @render()
 
   render: ->
