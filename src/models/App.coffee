@@ -17,6 +17,7 @@ class window.App extends Backbone.Model
 
     if @get('chips') is 0 then @gameOver()
     @get('game').newGame()
+    hand
 
   gameOver: ->
 

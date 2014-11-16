@@ -53,6 +53,5 @@ describe 'Game event handler', ->
       greatestScore = if _.max(game.get('playerHand').scores(), callback) > _.max(game.get('dealerHand').scores(), callback) then game.get('playerHand') else game.get('dealerHand')
       assert.isTrue spygame3.calledWith 'winner', greatestScore
 
-    it "should start a new Game", ->
 
 

@@ -14,8 +14,9 @@ describe 'App', ->
     game = app.get('game')
 
   it "should listen to event winner", ->
-    game.trigger 'winner', game.get('playerHand')
-    assert.isTrue spyApp.calledWith game.get('playerHand')
+    playerHand = game.get('playerHand')
+    game.trigger 'winner', playerHand
+    assert.isTrue spyApp.calledWith playerHand
 
   describe "betting", ->
     it "should have a starting chips count", ->
