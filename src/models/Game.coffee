@@ -1,5 +1,6 @@
 class window.Game extends Backbone.Model
   initialize: ->
+    @set 'dealerTurn',false
     @set 'deck', deck = new Deck()
     @set 'playerHand', deck.dealPlayer()
     @set 'dealerHand', deck.dealDealer()
@@ -40,11 +41,12 @@ class window.Game extends Backbone.Model
     _.max(@get('playerHand').scores(), callback) > _.max(@get('dealerHand').scores(), callback)
 
   dealerPlay: ->
+    @set('dealerTurn',true)
     hand = @get('dealerHand')
     hand.reveal()
-    while do @playerIsWinning
+    while do @playerIsWinning and @get('dealerTurn')
       do hand.hit
-    do hand.stand
+    if @get('dealerTurn') then do hand.stand
 
   triggerWinner: (hand) ->
     @trigger 'winner', hand

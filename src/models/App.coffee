@@ -10,8 +10,10 @@ class window.App extends Backbone.Model
 
   handleWinner: (hand) ->
     if hand is (@get 'game').get('dealerHand')
+      console.log ('dealer won')
       @set 'chips',(@get('chips') - @get 'bet')
     else
+      console.log ('player won')
       @set 'chips',(@get('chips') + @get 'bet')
     @set('bet', 1)
 
