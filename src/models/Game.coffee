@@ -27,7 +27,6 @@ class window.Game extends Backbone.Model
     if hand is @get('dealerHand')
       result = if do @playerIsWinning then @get('playerHand') else @get('dealerHand')
       return @triggerWinner(result)
-
     else
       do @dealerPlay
 
@@ -50,7 +49,6 @@ class window.Game extends Backbone.Model
 
   triggerWinner: (hand) ->
     @trigger 'winner', hand
-    hand
 
   newGame: ->
     do @initialize

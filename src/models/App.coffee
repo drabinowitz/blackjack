@@ -5,23 +5,26 @@ class window.App extends Backbone.Model
     @set 'game', game = new Game()
     @set 'chips', 10
     @set 'bet', 1
-    (@get 'game').on 'winner', (e) =>
+    @get('game').on 'winner', (e) =>
       @handleWinner(e)
 
   handleWinner: (hand) ->
-    if hand is (@get 'game').get('dealerHand')
+    if hand is @get('game').get('dealerHand')
       console.log ('dealer won')
-      @set 'chips',(@get('chips') - @get 'bet')
+      @set 'chips',(@get('chips') - @get('bet'))
     else
       console.log ('player won')
-      @set 'chips',(@get('chips') + @get 'bet')
+      @set 'chips',(@get('chips') + @get('bet'))
     @set('bet', 1)
-
+    @get('game').set('dealerTurn', false)
     if @get('chips') is 0 then @gameOver()
-    @get('game').newGame()
-    hand
+    @trigger 'gameOver'
+    # @get('game').newGame()
+    # hand
 
   gameOver: ->
+    alert('The Game Is Over')
+    do location.reload
 
   raiseBet: ->
     if  @get('bet') + 1 <= @get('chips')

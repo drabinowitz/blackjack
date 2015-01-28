@@ -1,1 +1,1 @@
-class window.BlackjackView extend Backbone.View
+class window.BlackjackView extends Backbone.View
