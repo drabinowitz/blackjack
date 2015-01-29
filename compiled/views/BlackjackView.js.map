@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "BlackjackView.js",
+  "sourceRoot": "../..",
+  "sources": [
+    "src/views/BlackjackView.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;AAAA,MAAA;mSAAA;;AAAA,EAAM,MAAM,CAAC;AAAb,oCAAA,CAAA;;;;KAAA;;yBAAA;;KAAmC,QAAQ,CAAC,KAA5C,CAAA;AAAA"
+}
